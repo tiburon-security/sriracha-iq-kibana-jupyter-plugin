@@ -1,56 +1,41 @@
+/**
+ * Simple plugin that just redirects menu to JupyterLabs Docker instance
+ **/
+
 import React from 'react';
+import Iframe from 'react-iframe';
+
 import {
-  EuiPage,
-  EuiPageHeader,
-  EuiTitle,
-  EuiPageBody,
-  EuiPageContent,
-  EuiPageContentHeader,
-  EuiPageContentBody,
-  EuiText,
+	EuiPage,
+	EuiPageHeader,
+	EuiTitle,
+	EuiPageBody,
+	EuiPageContent,
+	EuiPageContentHeader,
+	EuiPageContentBody,
+	EuiText
 } from '@elastic/eui';
 
 export class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+	constructor(props) {
+		super(props);
+	}
 
-  componentDidMount() {
-    /*
-       FOR EXAMPLE PURPOSES ONLY.  There are much better ways to
-       manage state and update your UI than this.
-    */
-    const { httpClient } = this.props;
-    httpClient.get('../api/srirachaiq_jupyter/example').then(resp => {
-      this.setState({ time: resp.data.time });
-    });
-  }
-  render() {
-    const { title } = this.props;
-    return (
-      <EuiPage>
-        <EuiPageBody>
-          <EuiPageHeader>
-            <EuiTitle size="l">
-              <h1>{title} Hello World!</h1>
-            </EuiTitle>
-          </EuiPageHeader>
-          <EuiPageContent>
-            <EuiPageContentHeader>
-              <EuiTitle>
-                <h2>Congratulations</h2>
-              </EuiTitle>
-            </EuiPageContentHeader>
-            <EuiPageContentBody>
-              <EuiText>
-                <h3>You have successfully created your first Kibana Plugin!</h3>
-                <p>The server time (via API call) is {this.state.time || 'NO API CALL YET'}</p>
-              </EuiText>
-            </EuiPageContentBody>
-          </EuiPageContent>
-        </EuiPageBody>
-      </EuiPage>
-    );
-  }
+	render() {
+		let url = "http://" + window.location.hostname + ":8888";
+		
+		const { title } = this.props;
+		return (
+			<EuiPage>
+				<EuiPageBody>
+					<Iframe url={url}
+						width="100%"
+						height="100%"
+						id="jupyter-iframe"
+						display="initial"
+					position="relative"/>
+				</EuiPageBody>
+			</EuiPage>
+		);
+	}
 }
