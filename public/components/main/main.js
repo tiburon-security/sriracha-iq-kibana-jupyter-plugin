@@ -7,13 +7,7 @@ import Iframe from 'react-iframe';
 
 import {
 	EuiPage,
-	EuiPageHeader,
-	EuiTitle,
 	EuiPageBody,
-	EuiPageContent,
-	EuiPageContentHeader,
-	EuiPageContentBody,
-	EuiText
 } from '@elastic/eui';
 
 export class Main extends React.Component {
@@ -23,14 +17,15 @@ export class Main extends React.Component {
 
 	render() {
 		let url = "http://" + window.location.hostname + ":8888";
-		
+		let iframeHeight = "" + document.getElementsByClassName("euiPageBody")[0].offsetHeight + "px";
+				
 		const { title } = this.props;
 		return (
 			<EuiPage>
 				<EuiPageBody>
 					<Iframe url={url}
 						width="100%"
-						height="100%"
+						height={iframeHeight}
 						id="jupyter-iframe"
 						display="initial"
 					position="relative"/>
