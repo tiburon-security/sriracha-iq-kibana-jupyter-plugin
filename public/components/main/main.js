@@ -5,32 +5,36 @@
 import React from 'react';
 import Iframe from 'react-iframe';
 
-import {
-	EuiPage,
-	EuiPageBody,
-} from '@elastic/eui';
-
 export class Main extends React.Component {
 	constructor(props) {
 		super(props);
+		
+		this.state = {
+			iframeHeight : "200px"
+		}
+	}
+	
+	componentDidMount(){		
+		let height = "" + (document.getElementsByClassName("application")[0].offsetHeight - 32) + "px";
+		
+		this.setState({
+			iframeHeight: height
+		})
 	}
 
 	render() {
 		let url = "http://" + window.location.hostname + ":8888";
-		let iframeHeight = "" + document.getElementsByClassName("euiPageBody")[0].offsetHeight + "px";
-				
+
 		const { title } = this.props;
 		return (
-			<EuiPage>
-				<EuiPageBody>
-					<Iframe url={url}
-						width="100%"
-						height={iframeHeight}
-						id="jupyter-iframe"
-						display="initial"
+			<div style={{"padding" : "16px"}}>
+				<Iframe url={url}
+					width="100%"
+					height={this.state.iframeHeight}
+					id="jupyter-iframe"
+					display="initial"
 					position="relative"/>
-				</EuiPageBody>
-			</EuiPage>
+			</div>
 		);
 	}
 }
