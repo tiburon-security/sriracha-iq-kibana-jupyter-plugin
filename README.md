@@ -1,7 +1,8 @@
-# SrirachaIQ - JupyterLab KIbana Plugin
+# SrirachaIQ - JupyterLab Kibana Plugin
 
 > Kibana Plugin for displaying JupyterLab within an iframe. Intended for use within the SrirachaIQ cybersecurity toolkit, which exposes JupyterLab over port 8888.
 
+![Kibana JuptyterLabs Plugin](https://raw.githubusercontent.com/tiburon-security/sriracha-iq/master/misc/SrirachaIQ_Kibana_Jupyter.png)
 ---
 
 ## development
